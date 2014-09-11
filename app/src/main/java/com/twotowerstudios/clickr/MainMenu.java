@@ -8,6 +8,8 @@ import android.view.MenuItem;
 
 public class MainMenu extends Activity {
 
+    //Hello
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
