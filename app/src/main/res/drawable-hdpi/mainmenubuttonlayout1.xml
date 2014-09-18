@@ -9,7 +9,7 @@
         android:right="0dp"
         android:bottom="0dp" />
     <size
-        android:width="180sp"
+        android:width="180dp"
         android:height="60dp" />
     <stroke
         android:width="3dp"
