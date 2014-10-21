@@ -27,7 +27,9 @@
         android:id="@+id/bStart"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="#00fdca" />
+        android:background="#00fdca"
+        android:width="64dp"
+        android:height="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,7 +47,8 @@
         android:text="Click me!"
         android:id="@+id/bClicker"
 
-        />
+        android:width="64dp"
+        android:height="40dp" />
 
     <TextView
         android:layout_width="wrap_content"

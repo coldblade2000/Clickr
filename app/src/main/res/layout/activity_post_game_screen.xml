@@ -121,5 +121,15 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ivHighScore"
+            android:src="@drawable/newhighscore"
+            android:layout_toEndOf="@+id/textView4"
+            android:layout_above="@+id/bGoToMainScreen"
+            android:layout_toRightOf="@+id/textView4" />
+
     </RelativeLayout>
+
 </RelativeLayout>

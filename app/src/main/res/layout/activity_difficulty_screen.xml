@@ -82,9 +82,10 @@
         android:layout_below="@+id/linearLayout2"
         android:layout_alignLeft="@+id/bReturn"
         android:layout_alignStart="@+id/bReturn"
-        android:id="@+id/linearLayout4">
+        android:id="@+id/linearLayout4"
+        android:layout_alignParentStart="true">
 
-        <Button
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Classic"
@@ -125,9 +126,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout5"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout3">
 
-        <Button
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Extreme"
@@ -140,6 +142,15 @@
             android:id="@+id/imageView6"
             android:src="@drawable/informationbutton1" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset high scores"
+        android:id="@+id/bResetHighScoreAll"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
 
 </RelativeLayout>
 
