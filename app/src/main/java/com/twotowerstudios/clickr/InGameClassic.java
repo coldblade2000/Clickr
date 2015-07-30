@@ -6,15 +6,19 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Random;
 
 
+
 public class InGameClassic extends Activity implements View.OnClickListener {
 
+    CountDownTimer cdtGame;
     Button bStart, bClicker;
     TextView tvBanner, tvScore, tvCountDown;
     View vbStart, vbClicker, vtvBanner, vtvScore, vtvCountDown;
@@ -31,6 +35,10 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         initialize();
 
         setDifficultyValues(difficulty);
+    }
+
+    protected void onPauseInteraction() {
+        cdtGame.cancel();
     }
 
     private void initialize() {
@@ -60,7 +68,28 @@ public class InGameClassic extends Activity implements View.OnClickListener {
 
 
         vbStart.setOnClickListener(this);
-        vbClicker.setOnClickListener(this);
+        bClicker.setOnTouchListener(new OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    //moveClickr();
+                    score++;
+                    if (difficulty == 1 && addedTime < 6) {
+                        gameDuration = gameDuration + 2500;
+                        addedTime++;
+                    } else if (difficulty == 2 && addedTime < 4) {
+                        gameDuration = gameDuration + 1000;
+                        addedTime++;
+                    }
+                    tvScore.setText("" + score);
+
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+
+                }
+                return false;
+            }
+        });
     }
 
     private void changeClickerPos() {
@@ -74,13 +103,8 @@ public class InGameClassic extends Activity implements View.OnClickListener {
                         mHandler.post(new Runnable() {
                             @Override
                             public void run() {
-                                DisplayMetrics dimension = new DisplayMetrics();
-                                getWindowManager().getDefaultDisplay().getMetrics(dimension);
-                                int width = dimension.widthPixels;
-                                int height = dimension.heightPixels;
-                                Random rInt = new Random();
-                                bClicker.setX(rInt.nextInt(width - bClicker.getWidth()));
-                                bClicker.setY(rInt.nextInt(height - bClicker.getHeight()));
+                                moveClickr();
+
                             }
                         });
 
@@ -92,15 +116,27 @@ public class InGameClassic extends Activity implements View.OnClickListener {
             }
         }).start();
 
+
+    }
+
+    private void moveClickr() {
+        DisplayMetrics dimension = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dimension);
+        int width = dimension.widthPixels;
+        int height = dimension.heightPixels;
+        Random rInt = new Random();
+        bClicker.setX(rInt.nextInt(width - bClicker.getWidth() * 3) + bClicker.getWidth());
+        bClicker.setY(rInt.nextInt(height - bClicker.getHeight() * 3) + bClicker.getHeight());
+
     }
 
     private void setDifficultyValues(int difficulty) {
         if (difficulty == 1) {
-            gameDuration = 15000;
+            gameDuration = 20000;
             moveFrequency = 2;
         } else if (difficulty == 2) {
-            gameDuration = 10000;
-            moveFrequency = 4;
+            gameDuration = 15000;
+            moveFrequency = 2;
         } else if (difficulty == 3) {
             moveFrequency = 5;
             gameDuration = 10000;
@@ -120,7 +156,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         bClicker.setVisibility(View.VISIBLE);
         changeClickerPos();
         booGameActive = true;
-        new CountDownTimer(gameDuration, 10) {
+        cdtGame = new CountDownTimer(gameDuration, 10) {
 
             @Override
             public void onTick(long l) {
@@ -142,6 +178,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         endGame.putExtra("difficulty", difficulty);
         startActivity(endGame);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -182,16 +219,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
                 //startCountdown();
                 break;
             case R.id.bClicker:
-                score++;
-                if (difficulty == 1 && addedTime < 6) {
-                    gameDuration = gameDuration + 2500;
-                    addedTime++;
-                } else if (difficulty == 2 && addedTime < 4) {
-                    gameDuration = gameDuration + 1000;
-                    addedTime++;
-                }
-                tvScore.setText("" + score);
-                break;
+
         }
     }
 }

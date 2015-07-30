@@ -67,6 +67,7 @@ public class DifficultyScreen extends Activity implements View.OnClickListener {
         AlertDialog resetHighScoreDialog = resetHighScoreBuilder.create();
         resetHighScoreDialog.show();
     }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

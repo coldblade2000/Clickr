@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.twotowerstudios.clickr"
-    android:versionCode="3"
-    android:versionName="0.2">
+    android:versionCode="4"
+    android:versionName="0.3">
 
     <application
         android:allowBackup="true"
@@ -25,14 +25,17 @@
         </activity>
         <activity
             android:name=".DifficultyScreen"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_difficulty_screen"
             android:theme="@android:style/Theme.Black.NoTitleBar" />
         <activity
             android:name=".InGameClassic"
             android:label="@string/title_activity_in_game_classic"
-            android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Black.NoTitleBar"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".PostGameScreen"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_post_game_screen"
             android:theme="@android:style/Theme.Black.NoTitleBar"></activity>
     </application>

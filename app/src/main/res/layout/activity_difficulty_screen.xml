@@ -85,7 +85,7 @@
         android:id="@+id/linearLayout4"
         android:layout_alignParentStart="true">
 
-    <Button
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Classic"
@@ -129,7 +129,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLayout3">
 
-    <Button
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Extreme"
