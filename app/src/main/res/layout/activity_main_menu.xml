@@ -37,6 +37,15 @@
             android:id="@+id/space3"
             android:layout_weight="0.25" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Debug Mode Activated"
+            android:id="@+id/tvDebugMode"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#FF0000"
+            android:visibility="invisible" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,14 +142,14 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView"
-            android:src="@drawable/facebookbutton"
+            android:src="@drawable/mmfacebookbutton"
             android:layout_gravity="bottom|left" />
 
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView2"
-            android:src="@drawable/googleplusbutton" />
+            android:src="@drawable/mmgoogleplusbutton" />
 
         <ImageView
             android:layout_width="50dp"
@@ -157,7 +166,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/imageView6"
-            android:src="@drawable/musiconbutton" />
+            android:src="@drawable/mmmusiconbutton" />
 
         <ImageView
             android:layout_width="50dp"

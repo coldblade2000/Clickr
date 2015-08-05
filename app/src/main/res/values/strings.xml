@@ -7,5 +7,6 @@
     <string name="title_activity_difficulty_screen">DifficultyScreen</string>
     <string name="title_activity_in_game_classic">InGameClassic</string>
     <string name="title_activity_post_game_screen">PostGameScreen</string>
+    <string name="title_activity_settings">Settings</string>
 
 </resources>

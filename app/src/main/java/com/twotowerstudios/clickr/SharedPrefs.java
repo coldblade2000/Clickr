@@ -20,9 +20,19 @@ public class SharedPrefs {
         editor.commit();
     }
 
+    public static void setBoolean(Context context, String key, boolean input) {
+        android.content.SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.putBoolean(key, input);
+        editor.commit();
+    }
+
+
     public static int getInt(Context context, String s) {
         return PreferenceManager.getDefaultSharedPreferences(context).getInt(s, -1);
     }
 
+    public static boolean getBoolean(Context context, String s) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(s, false);
+    }
 
 }

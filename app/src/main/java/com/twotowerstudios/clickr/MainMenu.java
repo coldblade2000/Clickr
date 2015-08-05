@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class MainMenu extends Activity implements View.OnClickListener {
 
     //Hello
-    TextView tvName, tvStudio;
+    TextView tvName, tvStudio, tvDebugMode;
     Button bPlay, bThemes, bStore, bSettings;
 
     @Override
@@ -20,12 +20,15 @@ public class MainMenu extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         initialize();
-
+        if (SharedPrefs.getBoolean(this, "DebugMode")) {
+            tvDebugMode.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initialize() {
         tvName = (TextView) findViewById(R.id.tvName);
         tvStudio = (TextView) findViewById(R.id.tvStudio);
+        tvDebugMode = (TextView) findViewById(R.id.tvDebugMode);
         bPlay = (Button) findViewById(R.id.bPlay);
         bThemes = (Button) findViewById(R.id.bThemes);
         bStore = (Button) findViewById(R.id.bStore);
@@ -52,7 +55,9 @@ public class MainMenu extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "Not Available Yet!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bSettings:
-                Toast.makeText(this, "Not Available Yet!", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Not Available Yet!", Toast.LENGTH_SHORT).show();
+                Intent iGoToSettingsPage = new Intent(this, Settings.class);
+                startActivity(iGoToSettingsPage);
                 break;
         }
 
