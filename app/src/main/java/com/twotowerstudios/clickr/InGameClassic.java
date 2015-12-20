@@ -52,6 +52,8 @@ public class InGameClassic extends Activity implements View.OnClickListener {
              debugButtonH.setVisibility(View.VISIBLE);
              debugButtonH.setText(bClicker.getHeight()+"");
              debugButtonW.setText(bClicker.getWidth()+"");*/
+        } else {
+            debugMode = false;
         }
     }
 

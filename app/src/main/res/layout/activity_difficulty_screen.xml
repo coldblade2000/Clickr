@@ -4,7 +4,8 @@
     android:layout_width="fill_parent"
     android:background="#1a88eb"
     tools:context=".DifficultyScreen"
-    android:id="@+id/DSLayout">
+    android:id="@+id/DSLayout"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
