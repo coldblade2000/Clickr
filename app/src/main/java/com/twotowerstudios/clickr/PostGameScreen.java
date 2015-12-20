@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -13,16 +14,28 @@ public class PostGameScreen extends Activity implements View.OnClickListener {
     TextView tvDifficulty, tvEndScore, tvHighScore;
     Button bPlayAgain, bGoToMainScreen;
     ImageView ivHighScore;
+    Boolean debugMode;
     int score, difficulty, currentHighScore;
+    RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_game_screen);
         initialize();
+        if (SharedPrefs.getBoolean(this, "DebugMode")) {
+            debugMode = true;
+        } else {
+            debugMode = false;
+        }
+        if (SharedPrefs.getBoolean(this, "Background")) {
+            layout.setBackgroundResource(R.drawable.background);
+        }
     }
 
     private void initialize() {
+        layout = (RelativeLayout) findViewById(R.id.PGLayout);
+
         tvDifficulty = (TextView) findViewById(R.id.tvDifficulty);
         tvEndScore = (TextView) findViewById(R.id.tvEndScore);
         tvHighScore = (TextView) findViewById(R.id.tvHighScore);

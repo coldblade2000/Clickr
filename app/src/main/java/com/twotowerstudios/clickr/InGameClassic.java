@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -20,29 +21,50 @@ public class InGameClassic extends Activity implements View.OnClickListener {
 
     CountDownTimer cdtGame;
     Button bStart, bClicker;
-    TextView tvBanner, tvScore, tvCountDown;
+    TextView tvBanner, tvScore, tvCountDown, debugButtonX, debugButtonY, debugButtonW, debugButtonH;
     View vbStart, vbClicker, vtvBanner, vtvScore, vtvCountDown;
     //Boolean booCountDownActive;
-    Boolean booGameActive;
+    Boolean booGameActive, debugMode;
     Handler mHandler = new Handler();
+
     int score;
     int difficulty, gameDuration, addedTime, moveFrequency;
 
+    RelativeLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game_classic);
         initialize();
-
+        debugButtonH.setText("");
+        debugButtonY.setText("");
+        debugButtonW.setText("");
+        debugButtonX.setText("");
         setDifficultyValues(difficulty);
+        if (SharedPrefs.getBoolean(this, "Background")) {
+            layout.setBackgroundResource(R.drawable.background);
+        }
+        if (SharedPrefs.getBoolean(this, "DebugMode")) {
+            debugMode = true;
+            /**debugButtonX.setVisibility(View.VISIBLE);
+             debugButtonY.setVisibility(View.VISIBLE);
+             debugButtonW.setVisibility(View.VISIBLE);
+             debugButtonH.setVisibility(View.VISIBLE);
+             debugButtonH.setText(bClicker.getHeight()+"");
+             debugButtonW.setText(bClicker.getWidth()+"");*/
+        }
     }
 
+    /**
     protected void onPauseInteraction() {
         cdtGame.cancel();
-    }
+
+     }*/
 
     private void initialize() {
         addedTime = 0;
+
+        layout = (RelativeLayout) findViewById(R.id.IGLayout);
 
         Bundle difficultyBundle = getIntent().getExtras();
         difficulty = difficultyBundle.getInt("iDifficulty");
@@ -54,6 +76,11 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         tvScore = (TextView) findViewById(R.id.tvScore);
         tvCountDown = (TextView) findViewById(R.id.tvCountDown);
 
+        debugButtonX = (TextView) findViewById(R.id.debugButtonX);
+        debugButtonY = (TextView) findViewById(R.id.debugButtonY);
+        debugButtonW = (TextView) findViewById(R.id.debugButtonW);
+        debugButtonH = (TextView) findViewById(R.id.debugButtonH);
+
         View vbStart = findViewById(R.id.bStart);
         View vbClicker = findViewById(R.id.bClicker);
         View vtvBanner = findViewById(R.id.tvBanner);
@@ -61,7 +88,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         View vtvCountDown = findViewById(R.id.tvCountDown);
 
         vbStart.setVisibility(View.VISIBLE);
-        vbClicker.setVisibility(View.GONE);
+        vbClicker.setVisibility(View.INVISIBLE);
         vtvCountDown.setVisibility(View.GONE);
         vtvScore.setVisibility(View.GONE);
         vtvBanner.setVisibility(View.VISIBLE);
@@ -72,21 +99,21 @@ public class InGameClassic extends Activity implements View.OnClickListener {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN && !(difficulty == 3)) {
                     //moveClickr();
                     score++;
-                    if (difficulty == 1 && addedTime < 6) {
+                    /**if (difficulty == 1 && addedTime < 6) {
                         gameDuration = gameDuration + 2500;
                         addedTime++;
                     } else if (difficulty == 2 && addedTime < 4) {
                         gameDuration = gameDuration + 1000;
                         addedTime++;
-                    }
+                     }*/
                     tvScore.setText("" + score);
 
-                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                } /**else if (event.getAction() == MotionEvent.ACTION_UP && !(difficulty == 3)) {
 
-                }
+                 }*/
                 return false;
             }
         });
@@ -109,7 +136,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
                         });
 
 
-                    } catch (Exception e) {
+                    } catch (Exception ignored) {
 
                     }
                 }
@@ -125,9 +152,19 @@ public class InGameClassic extends Activity implements View.OnClickListener {
         int width = dimension.widthPixels;
         int height = dimension.heightPixels;
         Random rInt = new Random();
-        bClicker.setX(rInt.nextInt(width - bClicker.getWidth() * 3) + bClicker.getWidth());
+        bClicker.setX(rInt.nextInt(width - bClicker.getWidth() * 2) + bClicker.getWidth());
         bClicker.setY(rInt.nextInt(height - bClicker.getHeight() * 3) + bClicker.getHeight());
-
+        if (debugMode) {
+            /**int position[] = new int[2];
+             Log.v("com.twotowerstudios",position[0]+"");
+             Log.v("com.twotowerstudios",position[1]+"");
+             vbClicker.getLocationOnScreen(position);
+             //debugButtonX.setText(vbClicker.getLocationOnScreen(position));
+             debugButtonX.setText(position[0]+"");
+             debugButtonY.setText(position[1]+"");*/
+            debugButtonX.setText("Button X coordinates: " + bClicker.getX() + "");
+            debugButtonY.setText("Button Y coordinates: " + bClicker.getY() + "");
+        }
     }
 
     private void setDifficultyValues(int difficulty) {
@@ -174,7 +211,7 @@ public class InGameClassic extends Activity implements View.OnClickListener {
 
     private void onGameEnd(int Score, int difficulty) {
         Intent endGame = new Intent(this, PostGameScreen.class);
-        endGame.putExtra("score", score);
+        endGame.putExtra("score", Score);
         endGame.putExtra("difficulty", difficulty);
         startActivity(endGame);
     }
@@ -201,6 +238,8 @@ public class InGameClassic extends Activity implements View.OnClickListener {
                             tvCountDown.setText("1");
                         } else if (millisUntilFinished <= 1) {
                             tvCountDown.setText("GO!");
+                            /**if(SharedPrefs.getBoolean(getApplicationContext(),"DebugMode")) {
+                             debugMode = true;*/
 
                         }
 
@@ -214,12 +253,22 @@ public class InGameClassic extends Activity implements View.OnClickListener {
                          vtvScore.setVisibility(View.VISIBLE);*/
                         booGameActive = true;
                         gameActive();
+                        if (debugMode) {
+                            debugButtonX.setVisibility(View.VISIBLE);
+                            debugButtonY.setVisibility(View.VISIBLE);
+                            debugButtonW.setVisibility(View.VISIBLE);
+                            debugButtonH.setVisibility(View.VISIBLE);
+                            debugButtonH.setText("Button Height: " + bClicker.getHeight());
+                            debugButtonW.setText("Button Width: " + bClicker.getWidth());
+                        }
                     }
                 }.start();
                 //startCountdown();
                 break;
             case R.id.bClicker:
-
+                score++;
+                tvScore.setText(score + "");
+                break;
         }
     }
 }

@@ -1,8 +1,14 @@
 <resources>
 
+    <!--http://www.hidroh.com/2015/02/25/support-multiple-themes-android-app-part-2/-->
+
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <!--<style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">-->
+    <style name="AppTheme" parent="android:Theme.Black.NoTitleBar">
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.Night" parent="android:Theme.Black.NoTitleBar">
+
+    </style>
 </resources>

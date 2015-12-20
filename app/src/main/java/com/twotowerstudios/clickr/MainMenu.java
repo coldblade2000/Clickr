@@ -5,15 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainMenu extends Activity implements View.OnClickListener {
 
-    //Hello
+
     TextView tvName, tvStudio, tvDebugMode;
     Button bPlay, bThemes, bStore, bSettings;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +25,13 @@ public class MainMenu extends Activity implements View.OnClickListener {
         if (SharedPrefs.getBoolean(this, "DebugMode")) {
             tvDebugMode.setVisibility(View.VISIBLE);
         }
+        if (SharedPrefs.getBoolean(this, "Background")) {
+            layout.setBackgroundResource(R.drawable.background);
+        }
     }
 
     private void initialize() {
+        layout = (LinearLayout) findViewById(R.id.LLMainMenu);
         tvName = (TextView) findViewById(R.id.tvName);
         tvStudio = (TextView) findViewById(R.id.tvStudio);
         tvDebugMode = (TextView) findViewById(R.id.tvDebugMode);

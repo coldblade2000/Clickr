@@ -7,13 +7,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class DifficultyScreen extends Activity implements View.OnClickListener {
 
     Button bReturn, bDifficultyEasy, bDifficultyMedium, bDifficultyClassic, bDifficultyHard, bDifficultyExtreme, bResetHighScoreAll;
+    TextView tvScoreEasy, tvScoreMedium, tvScoreClassic, tvScoreHard, tvScoreExtreme;
     int iDifficulty;
+    RelativeLayout layout;
 
 
     @Override
@@ -21,10 +25,38 @@ public class DifficultyScreen extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_difficulty_screen);
         initialize();
+        if (SharedPrefs.getBoolean(this, "Background")) {
+            layout.setBackgroundResource(R.drawable.background);
+        }
+        if (SharedPrefs.getBoolean(this, "DebugMode")) {
+            bResetHighScoreAll.setVisibility(View.VISIBLE);
+        }
+        if (SharedPrefs.getInt(this, "highScoreEasy") == -1) {
+            SharedPrefs.setInt(this, "highScoreEasy", 0);
+            tvScoreEasy.setText("0");
+        }
+        if (SharedPrefs.getInt(this, "highScoreMedium") == -1) {
+            SharedPrefs.setInt(this, "highScoreMedium", 0);
+            tvScoreMedium.setText("0");
+        }
+        if (SharedPrefs.getInt(this, "highScoreClassic") == -1) {
+            SharedPrefs.setInt(this, "highScoreClassic", 0);
+            tvScoreClassic.setText("0");
+        }
+        if (SharedPrefs.getInt(this, "highScoreHard") == -1) {
+            SharedPrefs.setInt(this, "highScoreHard", 0);
+            tvScoreHard.setText("0");
+        }
+        if (SharedPrefs.getInt(this, "highScoreExtreme") == -1) {
+            SharedPrefs.setInt(this, "highScoreExtreme", 0);
+            tvScoreExtreme.setText("0");
+        }
 
     }
 
     private void initialize() {
+        layout = (RelativeLayout) findViewById(R.id.DSLayout);
+
         bReturn = (Button) findViewById(R.id.bReturn);
         bDifficultyEasy = (Button) findViewById(R.id.bDifficultyEasy);
         bDifficultyMedium = (Button) findViewById(R.id.bDifficultyMedium);
@@ -33,6 +65,11 @@ public class DifficultyScreen extends Activity implements View.OnClickListener {
         bDifficultyExtreme = (Button) findViewById(R.id.bDifficultyExtreme);
         bResetHighScoreAll = (Button) findViewById(R.id.bResetHighScoreAll);
 
+        tvScoreEasy = (TextView) findViewById(R.id.tvScoreEasy);
+        tvScoreMedium = (TextView) findViewById(R.id.tvScoreMedium);
+        tvScoreClassic = (TextView) findViewById(R.id.tvScoreClassic);
+        tvScoreHard = (TextView) findViewById(R.id.tvScoreHard);
+        tvScoreExtreme = (TextView) findViewById(R.id.tvScoreExtreme);
 
         bReturn.setOnClickListener(this);
         bDifficultyEasy.setOnClickListener(this);
@@ -41,6 +78,12 @@ public class DifficultyScreen extends Activity implements View.OnClickListener {
         bDifficultyHard.setOnClickListener(this);
         bDifficultyExtreme.setOnClickListener(this);
         bResetHighScoreAll.setOnClickListener(this);
+
+        tvScoreEasy.setText(SharedPrefs.getInt(this, "highScoreEasy") + "");
+        tvScoreMedium.setText(SharedPrefs.getInt(this, "highScoreMedium") + "");
+        tvScoreClassic.setText(SharedPrefs.getInt(this, "highScoreClassic") + "");
+        tvScoreHard.setText(SharedPrefs.getInt(this, "highScoreHard") + "");
+        tvScoreExtreme.setText(SharedPrefs.getInt(this, "highScoreExtreme") + "");
     }
 
     private void highScoreResetDialog() {

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
     android:layout_width="fill_parent"
     android:orientation="vertical"
-    android:background="#1a88eb">
+    android:background="#1a88eb"
+    tools:context=".MainMenu"
+    android:id="@+id/LLMainMenu">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +62,7 @@
             android:shadowRadius="5"
             android:layout_gravity="center_horizontal"
             android:textSize="40sp"
-            android:textColor="#f57c00"
+            android:textColor="#000000"
             android:typeface="monospace" />
 
         <Space
@@ -80,7 +83,7 @@
             android:shadowRadius="5"
             android:layout_gravity="center_horizontal"
             android:textSize="40sp"
-            android:textColor="#e65100"
+            android:textColor="#000000"
             android:textColorHighlight="#f57c00" />
 
         <Space

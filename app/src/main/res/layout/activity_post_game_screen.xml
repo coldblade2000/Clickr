@@ -8,7 +8,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:background="#1a88eb"
-    tools:context="com.twotowerstudios.clickr.PostGameScreen">
+    tools:context="com.twotowerstudios.clickr.PostGameScreen"
+    android:id="@+id/PGLayout">
 
     <TextView
         android:layout_width="wrap_content"

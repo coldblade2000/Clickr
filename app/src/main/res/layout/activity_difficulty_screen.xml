@@ -1,8 +1,10 @@
-<RelativeLayout
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:background="#1a88eb">
+    android:background="#1a88eb"
+    tools:context=".DifficultyScreen"
+    android:id="@+id/DSLayout">
 
     <TextView
         android:layout_width="wrap_content"
@@ -45,6 +47,14 @@
             android:id="@+id/bDifficultyEasy"
             android:layout_weight="1.00" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tvScoreEasy"
+            android:layout_weight="0.05" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -67,6 +77,14 @@
             android:text="Medium"
             android:id="@+id/bDifficultyMedium"
             android:layout_weight="1.00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tvScoreMedium"
+            android:layout_weight="0.05" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -92,6 +110,14 @@
             android:id="@+id/bDifficultyClassic"
             android:layout_weight="1.00" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tvScoreClassic"
+            android:layout_weight="0.05" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -113,6 +139,14 @@
             android:text="Hard"
             android:id="@+id/bDifficultyHard"
             android:layout_weight="1.00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tvScoreHard"
+            android:layout_weight="0.05" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -136,6 +170,14 @@
             android:id="@+id/bDifficultyExtreme"
             android:layout_weight="1.00" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="0"
+            android:id="@+id/tvScoreExtreme"
+            android:layout_weight="0.05" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
@@ -150,7 +192,19 @@
         android:id="@+id/bResetHighScoreAll"
         android:layout_below="@+id/linearLayout3"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="35dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="High Score"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/bReturn"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:paddingTop="5dp" />
 
 </RelativeLayout>
 
